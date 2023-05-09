@@ -100,9 +100,9 @@ export default function Login() {
   let navigate = useNavigate();
   const { cart, clear, totalPrice } = useContext(CartCntext2);
   const [user, setUser] = useState({
-    name: "",
-    surname: "",
-    phone: ""
+    name:'',
+    surname:'',
+    phone:''
 
   });
   const captcha = React.createRef();
@@ -155,11 +155,15 @@ export default function Login() {
         batch.commit();
 
         Swal.fire({
-          icon: "succes",
+          icon: "success",
           title: "su orden se creo con exito",
           text: `Su numero de oden es: ${res.id}`,
-        });
-        clear();
+        }).then((result)=>{console.log(result)
+      restartForm(INITIAL_FORM_STATE)
+        // window.location.reload();
+          clear();
+
+        })
       });
     } else {
       Swal.fire({
@@ -168,6 +172,7 @@ export default function Login() {
         text: outOfStock.map((el) => el.name).join(","),
       });
     }
+   // restartForm();
   };
  
 
@@ -193,8 +198,14 @@ export default function Login() {
     event.preventDefault();
     console.log("USER", user);
   };
-const restartForm=()=>{
-  setUser(INITIAL_FORM_STATE)
+
+const restartForm=(initial)=>{
+  console.log("ingresgggo",initial);
+  setUser(
+initial
+  )
+  window.location.reload();
+  console.log("user",user);
 }
 
   return (
@@ -210,7 +221,15 @@ const restartForm=()=>{
                 ...(INITIAL_FORM_STATE || ""),
               }}
               validationSchema={FORM_VALIDATION}
-              onSubmit={(values) => capturoDatos(values)}
+              onSubmit={(values ) =>{
+                capturoDatos(values);
+              /*   restartForm({
+                  ...(INITIAL_FORM_STATE || ""),
+                }); */
+              }
+           
+                //(values) => capturoDatos(values)
+              }
             >
               <Form>
                 <Grid container spacing={1}>
@@ -248,7 +267,7 @@ const restartForm=()=>{
                   </div>
 
                   <Grid item xs={12} sm={6} md={8} lg={6}  style={{ marginLeft: "auto", marginRight: "auto" }} >
-                    <Button onClick={()=>restartForm()} size="medium" >Finalizar Compra</Button>
+                    <Button  size="medium" >Finalizar Compra</Button>
                   </Grid>
                 </Grid>
               </Form>

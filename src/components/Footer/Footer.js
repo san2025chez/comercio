@@ -69,13 +69,13 @@ export default function Footer(props) {
           <div className="footer__link__items">
             <h4 className="footer__link__titulo">Redes Sociales</h4>
             <a
-              href="https://www.instagram.com/servicejeans/"
+              href="https://www.instagram.com"
               target="blank"
               className="footer__link__icons">
               <InstagramIcon />
             </a>
             <a
-              href="https://www.facebook.com/ServiceJeans"
+              href="https://www.facebook.com"
               target="blank"
               className="footer__link__icons">
               <FacebookIcon />

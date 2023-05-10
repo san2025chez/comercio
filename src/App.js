@@ -24,7 +24,7 @@ function App() {
             <NavBar></NavBar>{" "}
           </StyledEngineProvider>
           <Routes>
-            <Route path="/" element={<Carousel1/>} />
+            <Route path="/" element={<Carousel1 />} />
 
             <Route exact path="/categoria/:Id" element={<Home />} />
 
